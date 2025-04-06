@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/charity-wallet-tracker/static/css/main.05fb91e4.css",
-    "main.js": "/charity-wallet-tracker/static/js/main.64ded0fa.js",
+    "main.js": "/charity-wallet-tracker/static/js/main.c0a4af5d.js",
     "index.html": "/charity-wallet-tracker/index.html",
     "main.05fb91e4.css.map": "/charity-wallet-tracker/static/css/main.05fb91e4.css.map",
-    "main.64ded0fa.js.map": "/charity-wallet-tracker/static/js/main.64ded0fa.js.map"
+    "main.c0a4af5d.js.map": "/charity-wallet-tracker/static/js/main.c0a4af5d.js.map"
   },
   "entrypoints": [
     "static/css/main.05fb91e4.css",
-    "static/js/main.64ded0fa.js"
+    "static/js/main.c0a4af5d.js"
   ]
 }
