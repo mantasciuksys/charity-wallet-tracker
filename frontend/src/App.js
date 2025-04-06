@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import Papa from 'papaparse';
-import Decimal from 'decimal.js';
 
 // Prevent extensions from accessing certain properties
 const preventExtensionInterference = () => {
@@ -216,14 +215,13 @@ function App() {
   }
 
   return (
-    <div className="App" style={{
-      backgroundColor: '#f8f9fe',
-      minHeight: '100vh',
-      padding: '40px 20px'
+    <div style={{ 
+      maxWidth: '1200px', 
+      margin: '0 auto', 
+      padding: '20px',
+      backgroundColor: '#f8f9fe'
     }}>
       <h1 style={{
-        fontSize: '2.5rem',
-        fontWeight: '600',
         textAlign: 'center',
         marginBottom: '40px',
         background: 'linear-gradient(90deg, #4F37FD 0%, #38B6FF 100%)',
@@ -259,27 +257,22 @@ function App() {
       <div style={{ 
         display: 'grid', 
         gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
-        gap: '24px',
-        maxWidth: '1200px',
-        margin: '0 auto',
+        gap: '20px',
         padding: '20px'
       }}>
-        {charityData.map((charity) => (
-          <div key={charity.btc_address} style={{
-            padding: '24px',
-            borderRadius: '16px',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+        {charityData.map((charity, index) => (
+          <div key={index} style={{ 
             backgroundColor: 'white',
-            transition: 'transform 0.2s ease',
-            ':hover': {
-              transform: 'translateY(-2px)'
-            }
+            borderRadius: '12px',
+            padding: '24px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+            display: 'flex',
+            flexDirection: 'column'
           }}>
             <h2 style={{ 
-              margin: '0 0 16px 0',
               fontSize: '1.5rem',
-              fontWeight: '600',
-              color: '#1a1a1a'
+              marginBottom: '16px',
+              color: '#333'
             }}>{charity.name}</h2>
             <div style={{ display: 'flex', gap: '8px', margin: '0 0 20px 0' }}>
               <span style={{
@@ -304,13 +297,11 @@ function App() {
                   strokeLinejoin="round"
                 >
                   {charity.description.includes('Registered') ? (
-                    // Checkmark shield for registered
                     <>
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                       <path d="M9 12l2 2 4-4" />
                     </>
                   ) : (
-                    // Info circle for unregistered
                     <>
                       <circle cx="12" cy="12" r="10" />
                       <line x1="12" y1="16" x2="12" y2="12" />
@@ -349,23 +340,12 @@ function App() {
               </span>
             </div>
             <div style={{ 
-              padding: '16px',
-              borderRadius: '12px',
               backgroundColor: '#f8f9fe',
+              padding: '16px',
+              borderRadius: '8px',
               marginBottom: '20px'
             }}>
-              <div style={{ 
-                fontSize: '1.25rem',
-                fontWeight: '600',
-                color: '#4F37FD',
-                marginBottom: '12px'
-              }}>
-                Balance: {(parseFloat(balances[charity.btc_address]?.incoming || 0) - parseFloat(balances[charity.btc_address]?.outgoing || 0)).toFixed(8)} BTC
-              </div>
-              <div style={{ fontSize: '0.875rem', color: '#666' }}>
-                <div style={{ marginBottom: '4px' }}>All incoming: {balances[charity.btc_address]?.incoming || '0'} BTC</div>
-                <div>All outgoing: {balances[charity.btc_address]?.outgoing || '0'} BTC</div>
-              </div>
+              {formatBalance(balances[charity.btc_address])}
             </div>
             <div style={{ 
               padding: '12px',
