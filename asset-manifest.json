@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/charity-wallet-tracker/static/css/main.05fb91e4.css",
+    "main.js": "/charity-wallet-tracker/static/js/main.64ded0fa.js",
+    "index.html": "/charity-wallet-tracker/index.html",
+    "main.05fb91e4.css.map": "/charity-wallet-tracker/static/css/main.05fb91e4.css.map",
+    "main.64ded0fa.js.map": "/charity-wallet-tracker/static/js/main.64ded0fa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.05fb91e4.css",
+    "static/js/main.64ded0fa.js"
+  ]
+}
