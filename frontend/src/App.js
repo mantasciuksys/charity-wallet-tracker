@@ -216,186 +216,191 @@ function App() {
 
   return (
     <div style={{ 
-      maxWidth: '1200px', 
-      margin: '0 auto', 
-      padding: '20px',
-      backgroundColor: '#f8f9fe'
+      backgroundColor: '#f8f9fe',
+      minHeight: '100vh',
+      width: '100%'
     }}>
-      <h1 style={{
-        textAlign: 'center',
-        marginBottom: '40px',
-        background: 'linear-gradient(90deg, #4F37FD 0%, #38B6FF 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent'
-      }}>Charity Wallet Tracker</h1>
-      {error && (
-        <div style={{ color: 'red', margin: '20px' }}>
-          {error}
-        </div>
-      )}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '8px',
-        marginBottom: '24px',
-        color: '#666',
-        fontSize: '0.875rem'
-      }}>
-        <span>Powered by API from</span>
-        <img 
-          src={`${process.env.PUBLIC_URL}/tatum logo.svg`}
-          alt="Tatum" 
-          style={{ 
-            height: '20px',
-            width: 'auto',
-            opacity: 0.8,
-            transform: 'translateY(-1px)'
-          }} 
-        />
-      </div>
       <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
-        gap: '20px',
+        maxWidth: '1200px', 
+        margin: '0 auto', 
         padding: '20px'
       }}>
-        {charityData.map((charity, index) => (
-          <div key={index} style={{ 
-            backgroundColor: 'white',
-            borderRadius: '12px',
-            padding: '24px',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
-            display: 'flex',
-            flexDirection: 'column'
-          }}>
-            <h2 style={{ 
-              fontSize: '1.5rem',
-              marginBottom: '16px',
-              color: '#333'
-            }}>{charity.name}</h2>
-            <div style={{ display: 'flex', gap: '8px', margin: '0 0 20px 0' }}>
-              <span style={{
-                padding: '6px 12px',
-                borderRadius: '20px',
-                backgroundColor: charity.description.includes('Registered') ? '#4F37FD20' : '#FF6B6B20',
-                color: charity.description.includes('Registered') ? '#4F37FD' : '#FF6B6B',
-                fontSize: '0.875rem',
-                fontWeight: '500',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '4px'
-              }}>
-                <svg 
-                  width="14" 
-                  height="14" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                >
-                  {charity.description.includes('Registered') ? (
-                    <>
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                      <path d="M9 12l2 2 4-4" />
-                    </>
-                  ) : (
-                    <>
-                      <circle cx="12" cy="12" r="10" />
-                      <line x1="12" y1="16" x2="12" y2="12" />
-                      <line x1="12" y1="8" x2="12.01" y2="8" />
-                    </>
-                  )}
-                </svg>
-                {charity.description.includes('Registered') ? 'Registered' : 'Unregistered'}
-              </span>
-              <span style={{
-                padding: '6px 12px',
-                borderRadius: '20px',
-                backgroundColor: '#E8F5FF',
-                color: '#0085FF',
-                fontSize: '0.875rem',
-                fontWeight: '500',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '4px'
-              }}>
-                <svg 
-                  width="14" 
-                  height="14" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                </svg>
-                {charity.description.split(' from ')[1]}
-              </span>
-            </div>
-            <div style={{ 
-              backgroundColor: '#f8f9fe',
-              padding: '16px',
-              borderRadius: '8px',
-              marginBottom: '20px'
-            }}>
-              {formatBalance(balances[charity.btc_address])}
-            </div>
-            <div style={{ 
-              padding: '12px',
-              borderRadius: '8px',
-              backgroundColor: '#f8f9fe',
-              fontSize: '0.875rem',
-              color: '#666',
-              marginBottom: '20px',
-              wordBreak: 'break-all'
-            }}>
-              Address: {charity.btc_address}
-            </div>
-            <a
-              href={charity.source_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '8px 12px',
-                color: '#4F37FD',
-                textDecoration: 'none',
-                fontSize: '0.875rem',
-                fontWeight: '500',
-                transition: 'opacity 0.2s ease',
-                opacity: '0.8',
-                ':hover': {
-                  opacity: '1'
-                }
-              }}
-            >
-              <svg 
-                width="16" 
-                height="16" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-              Visit website
-            </a>
+        <h1 style={{
+          textAlign: 'center',
+          marginBottom: '40px',
+          background: 'linear-gradient(90deg, #4F37FD 0%, #38B6FF 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent'
+        }}>Charity Wallet Tracker</h1>
+        {error && (
+          <div style={{ color: 'red', margin: '20px' }}>
+            {error}
           </div>
-        ))}
+        )}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '8px',
+          marginBottom: '24px',
+          color: '#666',
+          fontSize: '0.875rem'
+        }}>
+          <span>Powered by API from</span>
+          <img 
+            src={`${process.env.PUBLIC_URL}/tatum logo.svg`}
+            alt="Tatum" 
+            style={{ 
+              height: '20px',
+              width: 'auto',
+              opacity: 0.8,
+              transform: 'translateY(-1px)'
+            }} 
+          />
+        </div>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
+          gap: '20px',
+          padding: '20px'
+        }}>
+          {charityData.map((charity, index) => (
+            <div key={index} style={{ 
+              backgroundColor: 'white',
+              borderRadius: '12px',
+              padding: '24px',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+              display: 'flex',
+              flexDirection: 'column'
+            }}>
+              <h2 style={{ 
+                fontSize: '1.5rem',
+                marginBottom: '16px',
+                color: '#333'
+              }}>{charity.name}</h2>
+              <div style={{ display: 'flex', gap: '8px', margin: '0 0 20px 0' }}>
+                <span style={{
+                  padding: '6px 12px',
+                  borderRadius: '20px',
+                  backgroundColor: charity.description.includes('Registered') ? '#4F37FD20' : '#FF6B6B20',
+                  color: charity.description.includes('Registered') ? '#4F37FD' : '#FF6B6B',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}>
+                  <svg 
+                    width="14" 
+                    height="14" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  >
+                    {charity.description.includes('Registered') ? (
+                      <>
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <path d="M9 12l2 2 4-4" />
+                      </>
+                    ) : (
+                      <>
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="16" x2="12" y2="12" />
+                        <line x1="12" y1="8" x2="12.01" y2="8" />
+                      </>
+                    )}
+                  </svg>
+                  {charity.description.includes('Registered') ? 'Registered' : 'Unregistered'}
+                </span>
+                <span style={{
+                  padding: '6px 12px',
+                  borderRadius: '20px',
+                  backgroundColor: '#E8F5FF',
+                  color: '#0085FF',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}>
+                  <svg 
+                    width="14" 
+                    height="14" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                  </svg>
+                  {charity.description.split(' from ')[1]}
+                </span>
+              </div>
+              <div style={{ 
+                backgroundColor: '#f8f9fe',
+                padding: '16px',
+                borderRadius: '8px',
+                marginBottom: '20px'
+              }}>
+                {formatBalance(balances[charity.btc_address])}
+              </div>
+              <div style={{ 
+                padding: '12px',
+                borderRadius: '8px',
+                backgroundColor: '#f8f9fe',
+                fontSize: '0.875rem',
+                color: '#666',
+                marginBottom: '20px',
+                wordBreak: 'break-all'
+              }}>
+                Address: {charity.btc_address}
+              </div>
+              <a
+                href={charity.source_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '8px 12px',
+                  color: '#4F37FD',
+                  textDecoration: 'none',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                  transition: 'opacity 0.2s ease',
+                  opacity: '0.8',
+                  ':hover': {
+                    opacity: '1'
+                  }
+                }}
+              >
+                <svg 
+                  width="16" 
+                  height="16" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                >
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+                Visit website
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
