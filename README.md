@@ -37,8 +37,6 @@ A React application that tracks cryptocurrency (Bitcoin) balances for various ch
    npm start
    ```
 
-The application will be available at http://localhost:3000
-
 ## Technology Stack
 
 - React
